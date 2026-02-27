@@ -18,7 +18,7 @@ A command-line tool to manage multiple AI providers (Claude API, LiteLLM, Claude
 ### Homebrew (recommended)
 
 ```bash
-brew tap mikeleonfox/ai-provider-cli https://github.com/MikeLeonFox/ai-provider-cli
+brew tap mikeleonfox/aic
 brew install aic
 ```
 
