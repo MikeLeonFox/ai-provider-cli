@@ -1,6 +1,6 @@
 {
   "name": "ai-provider-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "CLI tool to manage multiple AI providers",
   "main": "dist/index.js",
   "bin": {

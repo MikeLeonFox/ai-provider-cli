@@ -46,7 +46,7 @@ export async function currentCommand(options: CurrentCommandOptions): Promise<vo
     if (options.env) {
       if (provider.type === 'claude' || provider.type === 'litellm') {
         if (apiKey) {
-          console.log(`export ANTHROPIC_API_KEY="${apiKey}"`);
+          console.log(`export ANTHROPIC_AUTH_TOKEN="${apiKey}"`);
         }
         if (provider.type === 'claude') {
           console.log(`export ANTHROPIC_BASE_URL="${provider.endpoint}"`);

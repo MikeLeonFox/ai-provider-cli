@@ -1,10 +1,22 @@
 import chalk from 'chalk';
 import { listProviders, getActiveProviderName } from '../config/manager.js';
 
-export function listCommand(): void {
+interface ListCommandOptions {
+  namesOnly?: boolean;
+}
+
+export function listCommand(options: ListCommandOptions = {}): void {
   try {
     const providers = listProviders();
     const activeProviderName = getActiveProviderName();
+
+    // --names-only: print provider names one per line (for use in completion scripts)
+    if (options.namesOnly) {
+      for (const provider of providers) {
+        console.log(provider.name);
+      }
+      return;
+    }
 
     if (providers.length === 0) {
       console.log(chalk.yellow('No providers configured yet.'));

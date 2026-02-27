@@ -1,7 +1,7 @@
 import prompts from 'prompts';
 import chalk from 'chalk';
 import { addProvider } from '../config/manager.js';
-import { Provider, isValidProviderType, validateProviderName } from '../types/provider.js';
+import { Provider, ProviderOptions, isValidProviderType, validateProviderName } from '../types/provider.js';
 
 interface AddCommandOptions {
   name?: string;
@@ -141,6 +141,58 @@ export async function addCommand(options: AddCommandOptions): Promise<void> {
         type: 'subscription',
         tool: response.tool
       };
+    }
+
+    // Model configuration
+    const modelResponse = await prompts([
+      {
+        type: 'text',
+        name: 'model',
+        message: 'Primary model (e.g. claude-opus-4-6), blank to skip:'
+      },
+      {
+        type: 'text',
+        name: 'smallModel',
+        message: 'Small/haiku model, blank to skip:'
+      }
+    ]);
+
+    if (modelResponse.model) {
+      provider.model = modelResponse.model;
+    }
+    if (modelResponse.smallModel) {
+      provider.smallModel = modelResponse.smallModel;
+    }
+
+    // Options configuration
+    const optionsResponse = await prompts([
+      {
+        type: 'confirm',
+        name: 'alwaysThinking',
+        message: 'Enable always-thinking mode?',
+        initial: false
+      },
+      {
+        type: 'confirm',
+        name: 'disableTelemetry',
+        message: 'Disable telemetry?',
+        initial: false
+      },
+      {
+        type: 'confirm',
+        name: 'disableBetas',
+        message: 'Disable experimental betas?',
+        initial: false
+      }
+    ]);
+
+    const providerOptions: ProviderOptions = {};
+    if (optionsResponse.alwaysThinking) providerOptions.alwaysThinking = true;
+    if (optionsResponse.disableTelemetry) providerOptions.disableTelemetry = true;
+    if (optionsResponse.disableBetas) providerOptions.disableBetas = true;
+
+    if (Object.keys(providerOptions).length > 0) {
+      provider.options = providerOptions;
     }
 
     // Optionally collect custom environment variables

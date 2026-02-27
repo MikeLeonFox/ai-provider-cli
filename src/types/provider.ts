@@ -1,6 +1,16 @@
+export interface ProviderOptions {
+  alwaysThinking?: boolean;
+  disableTelemetry?: boolean;
+  disableBetas?: boolean;
+}
+
 export interface BaseProvider {
   name: string;
   customEnvs?: Record<string, string>;
+  model?: string;
+  smallModel?: string;
+  headers?: Record<string, string>;
+  options?: ProviderOptions;
 }
 
 export interface ClaudeProvider extends BaseProvider {
@@ -25,6 +35,7 @@ export type Provider = ClaudeProvider | LiteLLMProvider | SubscriptionProvider;
 
 export interface Config {
   activeProvider?: string;
+  previousProvider?: string;
   providers: Provider[];
   lastAppliedEnvKeys?: string[];
 }
