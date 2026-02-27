@@ -1,8 +1,8 @@
 class AiProvider < Formula
   desc "Manage multiple AI providers (Claude API, LiteLLM, Claude.ai) for Claude Code"
   homepage "https://github.com/MikeLeonFox/ai-provider-cli"
-  url "https://github.com/MikeLeonFox/ai-provider-cli/archive/refs/tags/v1.0.1.tar.gz"
-  sha256 "80974fa3eca2456770f218c9cc99a66513f0821b6fb6b3309464fd9f1b4e1d68"
+  url "https://github.com/MikeLeonFox/ai-provider-cli/archive/refs/tags/v1.0.2.tar.gz"
+  sha256 "2b690a485b7914a6931e27e34fd1418fd802843c015324ba6c875d272ff75bcf"
   license "MIT"
 
   depends_on "node"
@@ -19,6 +19,6 @@ class AiProvider < Formula
   end
 
   test do
-    assert_match "1.0.1", shell_output("#{bin}/ai-provider --version")
+    assert_match "1.0.2", shell_output("#{bin}/ai-provider --version")
   end
 end
