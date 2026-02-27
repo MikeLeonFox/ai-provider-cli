@@ -15,7 +15,7 @@ const program = new Command();
 program
   .name('aic')
   .description('CLI tool to manage multiple AI providers')
-  .version('1.0.2');
+  .version('1.0.3');
 
 program
   .command('add')

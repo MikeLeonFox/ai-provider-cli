@@ -19,6 +19,6 @@ class AiProvider < Formula
   end
 
   test do
-    assert_match "1.0.2", shell_output("#{bin}/aic --version")
+    assert_match "1.0.3", shell_output("#{bin}/aic --version")
   end
 end
