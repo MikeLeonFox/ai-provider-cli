@@ -71,7 +71,7 @@ program
 
 // Show help if no command is provided
 if (!process.argv.slice(2).length) {
-  program.outputHelp();
+  program.help(); // prints and exits, preventing parse() from also printing it
 }
 
 program.parse(process.argv);
